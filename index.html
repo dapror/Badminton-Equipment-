@@ -6,21 +6,39 @@
 <title>Badminton Equipment Slide Show</title>
 
 <style>
-/* BACKGROUND ANIMASI */
 body {
 margin:0;
 font-family:Arial, sans-serif;
 color:white;
 overflow:hidden;
+
+/* BACKGROUND GRADIENT */
 background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1a2980);
 background-size: 400% 400%;
-animation: gradientBG 10s ease infinite;
+animation: gradientBG 12s ease infinite;
 }
 
 @keyframes gradientBG {
 0% {background-position:0% 50%;}
 50% {background-position:100% 50%;}
 100% {background-position:0% 50%;}
+}
+
+/* BINTANG BACKGROUND */
+.star {
+position:fixed;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite ease-in-out;
+opacity:0.7;
+z-index:0;
+}
+
+@keyframes twinkle {
+0%,100% {opacity:0.2; transform:scale(1);}
+50% {opacity:1; transform:scale(1.5);}
 }
 
 /* SLIDE */
@@ -30,6 +48,8 @@ height:100vh;
 text-align:center;
 padding:40px;
 animation:fade 1s ease-in-out;
+position:relative;
+z-index:2;
 }
 
 .active {
@@ -55,9 +75,7 @@ from {transform:translateY(50px); opacity:0;}
 to {transform:translateY(0); opacity:1;}
 }
 
-/* TEKS & GAMBAR */
-h1,h2 {margin-bottom:20px;}
-
+/* GAMBAR */
 img {
 width:200px;
 height:200px;
@@ -66,6 +84,7 @@ border-radius:15px;
 box-shadow:0 0 15px rgba(255,255,255,0.3);
 }
 
+/* BUTTON */
 button {
 position:fixed;
 bottom:20px;
@@ -76,18 +95,20 @@ color:white;
 cursor:pointer;
 border-radius:10px;
 font-size:16px;
+z-index:3;
 }
 
 #next {right:20px;}
 #prev {left:20px;}
 
+/* IFRAME */
 iframe {
 width:80%;
 height:400px;
 border-radius:15px;
 }
 
-/* TEKS BERGERAK SLIDE 6 */
+/* TEKS BERGERAK */
 .marquee {
 width:100%;
 overflow:hidden;
@@ -115,10 +136,26 @@ font-weight:bold;
 from {opacity:0;}
 to {opacity:1;}
 }
+
+/* EFEK KURSOR */
+.cursor {
+position:fixed;
+width:10px;
+height:10px;
+background:#00c6ff;
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+box-shadow:0 0 15px #00c6ff;
+z-index:9999;
+}
 </style>
 </head>
 
 <body>
+
+<!-- KURSOR -->
+<div class="cursor" id="cursor"></div>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
@@ -129,47 +166,53 @@ to {opacity:1;}
 <!-- SLIDE 2 -->
 <div class="slide">
 <h2>Badminton Equipment</h2>
-<div>
-  <img src="image/sepatu.jfif"><p>Sepatu</p>
-  <img src="image/seragam.jfif"><p>Seragam</p>
-  <img src="image/u 4.jpeg"><p>Shuttlecock</p>
-  <img src="image/u 5.jpeg"><p>Raket</p>
+
+<div style="display:inline-block;text-align:center;">
+<img src="image/sepatu.jfif"><p>Sepatu</p>
 </div>
+
+<div style="display:inline-block;text-align:center;">
+<img src="image/seragam.jfif"><p>Seragam</p>
+</div>
+
+<div style="display:inline-block;text-align:center;">
+<img src="image/u 4.jpeg"><p>Shuttlecock</p>
+</div>
+
+<div style="display:inline-block;text-align:center;">
+<img src="image/u 5.jpeg"><p>Raket</p>
+</div>
+
 </div>
 
 <!-- SLIDE 3 -->
 <div class="slide">
 <h2>Moment Kevin Sanjaya Dan Marcus Gideon</h2>
-<img src="image/u 1.jfif"><p>Apresiasi Ke Pelatih</p>
+<img src="image/u 1.jfif"><p>Apresiasi</p>
 <img src="image/u 2.jfif"><p>Selebrasi</p>
-<img src="image/u 3.jfif"><p>Smash Marcus Gideon</p>
+<img src="image/u 3.jfif"><p>Smash</p>
 </div>
 
 <!-- SLIDE 4 -->
 <div class="slide">
 <h2>Biografi Dan Prestasi</h2>
-<p>
-🏆 Juara All England 2017 & 2018<br>
-🏆 Juara Asian Games 2018<br>
-🏆 Peringkat 1 Dunia Ganda Putra<br>
-Julukan: The Minions
-</p>
+<p>🏆 All England 2017 & 2018<br>
+🏆 Asian Games 2018<br>
+🏆 World Rank #1</p>
 </div>
 
 <!-- SLIDE 5 -->
 <div class="slide">
 <h2>Cuplikan The Minions</h2>
-<iframe src="https://www.youtube.com/embed/zeDKMR2KdCQ" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/zeDKMR2KdCQ"></iframe>
 </div>
 
 <!-- SLIDE 6 -->
 <div class="slide">
 <h1>Terima Kasih</h1>
-
 <div class="marquee">
-<span>🏸 THANK YOU FOR WATCHING • SEMOGA TERINSPIRASI DENGAN DUNIA BADMINTON • KEEP SMASHING 🏸</span>
+<span>🏸 THANK YOU FOR WATCHING • KEEP SMASHING • BADMINTON FOREVER 🏸</span>
 </div>
-
 </div>
 
 <!-- BUTTON -->
@@ -190,6 +233,23 @@ index += step;
 if(index < 0) index = slides.length - 1;
 if(index >= slides.length) index = 0;
 showSlide(index);
+}
+
+/* KURSOR FOLLOW */
+const cursor = document.getElementById("cursor");
+document.addEventListener("mousemove",(e)=>{
+cursor.style.left = e.clientX + "px";
+cursor.style.top = e.clientY + "px";
+});
+
+/* BINTANG OTOMATIS */
+for(let i=0;i<40;i++){
+let star = document.createElement("div");
+star.classList.add("star");
+star.style.top = Math.random()*100 + "vh";
+star.style.left = Math.random()*100 + "vw";
+star.style.animationDuration = (1+Math.random()*3) + "s";
+document.body.appendChild(star);
 }
 </script>
 
