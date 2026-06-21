@@ -84,7 +84,7 @@ border-radius:15px;
 box-shadow:0 0 15px rgba(255,255,255,0.3);
 }
 
-/* BUTTON */
+/* BUTTON NEXT PREV */
 button {
 position:fixed;
 bottom:20px;
@@ -137,7 +137,7 @@ from {opacity:0;}
 to {opacity:1;}
 }
 
-/* EFEK KURSOR */
+/* KURSOR */
 .cursor {
 position:fixed;
 width:10px;
@@ -149,6 +149,21 @@ transform:translate(-50%,-50%);
 box-shadow:0 0 15px #00c6ff;
 z-index:9999;
 }
+
+/* MUSIC BUTTON */
+#musicBtn {
+position:fixed;
+top:20px;
+right:20px;
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:#ffcc00;
+color:black;
+cursor:pointer;
+font-weight:bold;
+z-index:9999;
+}
 </style>
 </head>
 
@@ -156,6 +171,14 @@ z-index:9999;
 
 <!-- KURSOR -->
 <div class="cursor" id="cursor"></div>
+
+<!-- MUSIK -->
+<audio id="music" loop>
+<source src="sound/music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- BUTTON MUSIC -->
+<button id="musicBtn" onclick="toggleMusic()">🔊 Music OFF</button>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
@@ -206,9 +229,9 @@ z-index:9999;
     <p>Smash Marcus Gideon</p>
   </div>
 
-  </div>
-</div> 
-  
+</div>
+</div>
+
 <!-- SLIDE 4 -->
 <div class="slide">
 <h2>Biografi Dan Prestasi</h2>
@@ -238,7 +261,7 @@ z-index:9999;
 </div>
 </div>
 
-<!-- BUTTON -->
+<!-- BUTTON NAV -->
 <button id="prev" onclick="changeSlide(-1)">Prev</button>
 <button id="next" onclick="changeSlide(1)">Next</button>
 
@@ -258,14 +281,14 @@ if(index >= slides.length) index = 0;
 showSlide(index);
 }
 
-/* KURSOR FOLLOW */
+/* KURSOR */
 const cursor = document.getElementById("cursor");
 document.addEventListener("mousemove",(e)=>{
 cursor.style.left = e.clientX + "px";
 cursor.style.top = e.clientY + "px";
 });
 
-/* BINTANG OTOMATIS */
+/* BINTANG */
 for(let i=0;i<40;i++){
 let star = document.createElement("div");
 star.classList.add("star");
@@ -273,6 +296,23 @@ star.style.top = Math.random()*100 + "vh";
 star.style.left = Math.random()*100 + "vw";
 star.style.animationDuration = (1+Math.random()*3) + "s";
 document.body.appendChild(star);
+}
+
+/* MUSIC */
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+
+let isPlaying = false;
+
+function toggleMusic(){
+if(isPlaying){
+music.pause();
+musicBtn.innerText = "🔊 Music OFF";
+}else{
+music.play();
+musicBtn.innerText = "🔇 Music ON";
+}
+isPlaying = !isPlaying;
 }
 </script>
 
