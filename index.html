@@ -206,6 +206,29 @@ audio{
 display:none;
 }
 </style>
+.marquee-container{
+width:100%;
+overflow:hidden;
+}
+
+.marquee-text{
+display:inline-block;
+white-space:nowrap;
+font-size:80px;
+font-weight:bold;
+color:#fff;
+text-shadow:0 0 20px orange;
+animation:marquee 12s linear infinite;
+}
+
+@keyframes marquee{
+0%{
+transform:translateX(100%);
+}
+100%{
+transform:translateX(-100%);
+}
+}
 </head>
 
 <body>
@@ -314,9 +337,21 @@ allowfullscreen>
 <p>Video inspiratif permainan Kevin Sanjaya.</p>
 
 </section>
-
+<div class="slide s4">
+    <h1>🏸 Badminton Is More Than A Sport</h1>
+    <p style="font-size:30px;max-width:900px;line-height:1.8;">
+        "Kesuksesan bukan tentang seberapa keras kamu memukul shuttlecock,
+        tetapi seberapa kuat kamu bangkit setelah setiap kekalahan.
+        Terus berlatih, terus berkembang, dan jadilah pemain terbaik versimu sendiri."
+    </p>
 </div>
-
+<div class="slide s5">
+    <div class="marquee-container">
+        <div class="marquee-text">
+            🎉 THANKS FOR WATCHING 🎉 THANKS FOR WATCHING 🎉 THANKS FOR WATCHING 🎉
+        </div>
+    </div>
+</div>
 <script>
 document.addEventListener("click", function(){
 let music=document.getElementById("bgMusic");
