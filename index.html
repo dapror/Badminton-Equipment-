@@ -1,362 +1,301 @@
-```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Badminton Store Premium</title>
+<title>6 Slide Premium</title>
 
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
-scroll-behavior:smooth;
+font-family:'Poppins',sans-serif;
 }
 
-/* Background Premium */
 body{
-background:linear-gradient(-45deg,#111,#1a1a1a,#ff6600,#ff9900);
-background-size:400% 400%;
-animation:bgMove 15s ease infinite;
-color:white;
-overflow-x:hidden;
+overflow:hidden;
 }
 
-@keyframes bgMove{
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
-}
-
-/* Shuttlecock Background */
-body::before{
-content:"🏸 🏸 🏸 🏸 🏸 🏸 🏸";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-font-size:40px;
-opacity:0.08;
-pointer-events:none;
-animation:floatShuttle 25s linear infinite;
-z-index:-1;
-}
-
-@keyframes floatShuttle{
-0%{
-transform:translateY(100vh);
-}
-100%{
-transform:translateY(-100vh);
-}
-}
-
-.product-gallery{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:20px;
-width:95%;
-max-width:1200px;
-}
-
-.product-card{
-background:rgba(0,0,0,.4);
-backdrop-filter:blur(10px);
-padding:15px;
-border-radius:15px;
-}
-
-.product-card img{
-width:100%;
-height:180px;
-object-fit:cover;
-}
-
-.gallery3{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-width:90%;
-max-width:1000px;
-}
-
-.gallery3 img{
-width:100%;
-height:250px;
-object-fit:cover;
-border-radius:15px;
-}
-
-#welcome{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:linear-gradient(135deg,#ff6600,#ff9900);
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:50px;
-font-weight:bold;
-z-index:9999;
-animation:fadeOut 3s forwards;
-}
-
-@keyframes fadeOut{
-0%,80%{
-opacity:1;
-}
-100%{
-opacity:0;
-visibility:hidden;
-}
-}
-
+/* SLIDER */
 .slider{
+position:relative;
 width:100%;
 height:100vh;
-overflow-y:scroll;
-scroll-snap-type:y mandatory;
+overflow:hidden;
 }
 
 .slide{
-height:100vh;
+position:absolute;
+width:100%;
+height:100%;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-scroll-snap-align:start;
+color:white;
 text-align:center;
 padding:20px;
+opacity:0;
+transition:1s;
+background-size:cover;
+background-position:center;
 }
 
-.slide img{
-width:70%;
-max-width:700px;
-border-radius:20px;
-box-shadow:0 0 20px rgba(255,255,255,.3);
+.slide.active{
+opacity:1;
 }
 
-.slide h1{
-margin:20px 0;
-font-size:45px;
-text-shadow:0 0 15px orange;
+/* Background tiap slide */
+.slide:nth-child(1){
+background:linear-gradient(135deg,#ff6b6b,#ee0979);
 }
 
-.slide p{
-font-size:20px;
-max-width:700px;
+.slide:nth-child(2){
+background:linear-gradient(135deg,#4facfe,#00f2fe);
 }
 
-.s1{background:transparent;}
-.s2{background:transparent;}
-.s3{background:transparent;}
-.s4{background:transparent;}
-.s5{background:transparent;}
-
-iframe{
-width:80%;
-height:500px;
-border-radius:20px;
+.slide:nth-child(3){
+background:linear-gradient(135deg,#43e97b,#38f9d7);
 }
 
-.next{
-margin-top:20px;
-padding:12px 30px;
-background:orange;
+.slide:nth-child(4){
+background:linear-gradient(135deg,#fa709a,#fee140);
+}
+
+.slide:nth-child(5){
+background:linear-gradient(135deg,#667eea,#764ba2);
+}
+
+.slide:nth-child(6){
+background:linear-gradient(135deg,#f093fb,#f5576c);
+}
+
+h1{
+font-size:4rem;
+text-shadow:0 0 20px rgba(0,0,0,.5);
+animation:zoom 2s infinite alternate;
+}
+
+p{
+font-size:1.4rem;
+margin-top:15px;
+max-width:800px;
+}
+
+@keyframes zoom{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.1);
+}
+}
+
+/* Welcome */
+.welcome{
+font-size:5rem;
+font-weight:bold;
+animation:welcome 2s infinite alternate;
+}
+
+@keyframes welcome{
+from{
+transform:translateY(-20px);
+}
+to{
+transform:translateY(20px);
+}
+}
+
+/* Tombol */
+.controls{
+position:absolute;
+bottom:20px;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+z-index:100;
+}
+
+button{
+padding:12px 25px;
 border:none;
 border-radius:30px;
-font-size:18px;
 cursor:pointer;
-transition:.3s;
-}
-
-.next:hover{
-background:#ff6600;
-transform:scale(1.08);
-}
-
-/* Tombol Musik */
-.music-btn{
-position:fixed;
-top:20px;
-right:20px;
-background:linear-gradient(45deg,#ff6600,#ff9900);
-border:none;
-padding:12px 20px;
-border-radius:30px;
 font-size:16px;
 font-weight:bold;
-color:white;
-cursor:pointer;
-z-index:10000;
-box-shadow:0 0 15px rgba(255,165,0,.8);
+background:white;
 transition:.3s;
 }
 
-.music-btn:hover{
+button:hover{
 transform:scale(1.1);
 }
 
-audio{
-display:none;
-}
-</style>
-.marquee-container{
-width:100%;
-overflow:hidden;
+/* Music */
+.music-btn{
+position:absolute;
+top:20px;
+right:20px;
+z-index:100;
 }
 
-.marquee-text{
-display:inline-block;
+/* Running Text */
+.marquee{
+width:100%;
+overflow:hidden;
 white-space:nowrap;
-font-size:80px;
-font-weight:bold;
-color:#fff;
-text-shadow:0 0 20px orange;
-animation:marquee 12s linear infinite;
+}
+
+.marquee h1{
+display:inline-block;
+animation:marquee 10s linear infinite;
 }
 
 @keyframes marquee{
-0%{
+from{
 transform:translateX(100%);
 }
-100%{
+to{
 transform:translateX(-100%);
 }
 }
-</head>
 
+@media(max-width:768px){
+
+h1{
+font-size:2.5rem;
+}
+
+.welcome{
+font-size:3rem;
+}
+
+p{
+font-size:1rem;
+}
+
+}
+</style>
+</head>
 <body>
 
-<div id="welcome">
-🏸 Welcome Badminton Lovers 🏸
-</div>
-
-<!-- Tombol Musik -->
-<button class="music-btn" onclick="toggleMusic()">
-🔇 Music OFF
-</button>
-
-<!-- Musik -->
-<audio id="bgMusic" loop>
-<source src="music/music(2).mp3" type="audio/mpeg">
+<audio id="music" loop>
+<source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<script>
-const music = document.getElementById("bgMusic");
-const btn = document.querySelector(".music-btn");
-
-let isPlaying = false;
-
-function toggleMusic(){
-if(isPlaying){
-music.pause();
-btn.innerHTML="🔇 Music OFF";
-}else{
-music.play();
-btn.innerHTML="🔊 Music ON";
-}
-isPlaying=!isPlaying;
-}
-
-document.body.addEventListener("click",function(){
-if(!isPlaying){
-music.play();
-btn.innerHTML="🔊 Music ON";
-isPlaying=true;
-}
-},{once:true});
-</script>
+<button class="music-btn" onclick="toggleMusic()">
+🔊 Music ON
+</button>
 
 <div class="slider">
 
-<section class="slide s1">
-<h1>🏸 PRODUK BADMINTON TERLENGKAP</h1>
-
-<div class="product-gallery">
-
-<div class="product-card">
-<img src="images/u4.jpeg" alt="Shuttlecock">
-<h3>Shuttlecock</h3>
-<p>Kualitas premium untuk latihan dan turnamen.</p>
+<!-- Slide 1 -->
+<div class="slide active">
+<h1 class="welcome">WELCOME</h1>
+<p>Selamat Datang di Website Presentasi Modern</p>
 </div>
 
-<div class="product-card">
-<img src="images/u5.jpeg" alt="Raket">
-<h3>Raket</h3>
-<p>Ringan, kuat, dan nyaman digunakan.</p>
+<!-- Slide 2 -->
+<div class="slide">
+<h1>Slide 2</h1>
+<p>Tampilan dengan background modern dan elegan.</p>
 </div>
 
-<div class="product-card">
-<img src="images/sepatu.jfif" alt="Sepatu">
-<h3>Sepatu</h3>
-<p>Grip kuat dan anti slip.</p>
+<!-- Slide 3 -->
+<div class="slide">
+<h1>Slide 3</h1>
+<p>Animasi transisi yang halus dan menarik.</p>
 </div>
 
-<div class="product-card">
-<img src="images/seragam.jfif" alt="Seragam">
-<h3>Seragam</h3>
-<p>Nyaman dipakai saat latihan maupun pertandingan.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="slide s2">
-<h1>⭐ PRODUK UNGGULAN</h1>
-
-<div class="gallery3">
-
-<img src="images/u1.jfif" alt="Raket Badminton">
-
-<img src="images/u2.jfif" alt="Sepatu Badminton">
-
-<img src="images/u3.jfif" alt="Shuttlecock">
-
-</div>
-
-<p style="margin-top:25px;">
-Produk pilihan dengan kualitas terbaik dan harga terjangkau.
+<!-- Slide 4 -->
+<div class="slide">
+<h1>Inspirasi</h1>
+<p>
+Kesuksesan bukan tentang siapa yang paling cepat,
+melainkan siapa yang tidak pernah berhenti mencoba.
 </p>
-
-</section>
-<section class="slide s3">
-<h1>🔥 KEVIN SANJAYA HIGHLIGHT</h1>
-
-<iframe
-src="https://www.youtube.com/embed/zeDKMR2KdCQ"
-allowfullscreen>
-</iframe>
-
-<p>Video inspiratif permainan Kevin Sanjaya.</p>
-
-</section>
-<div class="slide s4">
-    <h1>🏸 Badminton Is More Than A Sport</h1>
-    <p style="font-size:30px;max-width:900px;line-height:1.8;">
-        "Kesuksesan bukan tentang seberapa keras kamu memukul shuttlecock,
-        tetapi seberapa kuat kamu bangkit setelah setiap kekalahan.
-        Terus berlatih, terus berkembang, dan jadilah pemain terbaik versimu sendiri."
-    </p>
 </div>
-<div class="slide s5">
-    <div class="marquee-container">
-        <div class="marquee-text">
-            🎉 THANKS FOR WATCHING 🎉 THANKS FOR WATCHING 🎉 THANKS FOR WATCHING 🎉
-        </div>
-    </div>
+
+<!-- Slide 5 -->
+<div class="slide">
+<h1>Motivasi</h1>
+<p>
+Tetap semangat, terus belajar, dan jangan takut gagal
+karena setiap kegagalan adalah langkah menuju keberhasilan.
+</p>
 </div>
+
+<!-- Slide 6 -->
+<div class="slide">
+<div class="marquee">
+<h1>✨ THANKS FOR WATCHING ✨ THANKS FOR WATCHING ✨ THANKS FOR WATCHING ✨</h1>
+</div>
+</div>
+
+</div>
+
+<div class="controls">
+<button onclick="prevSlide()">⬅ Prev</button>
+<button onclick="nextSlide()">Next ➡</button>
+</div>
+
 <script>
-document.addEventListener("click", function(){
-let music=document.getElementById("bgMusic");
-music.play();
+
+let slides=document.querySelectorAll(".slide");
+let current=0;
+
+function showSlide(index){
+
+slides.forEach(slide=>{
+slide.classList.remove("active");
 });
+
+slides[index].classList.add("active");
+}
+
+function nextSlide(){
+current=(current+1)%slides.length;
+showSlide(current);
+}
+
+function prevSlide(){
+current=(current-1+slides.length)%slides.length;
+showSlide(current);
+}
+
+setInterval(nextSlide,5000);
+
+/* Music */
+let music=document.getElementById("music");
+let btn=document.querySelector(".music-btn");
+let playing=false;
+
+function toggleMusic(){
+
+if(!playing){
+music.play();
+btn.innerHTML="🔇 Music OFF";
+playing=true;
+}else{
+music.pause();
+btn.innerHTML="🔊 Music ON";
+playing=false;
+}
+
+}
+
+/* Auto play saat pertama klik layar */
+document.body.addEventListener("click",function(){
+if(!playing){
+music.play();
+playing=true;
+btn.innerHTML="🔇 Music OFF";
+}
+},{once:true});
+
 </script>
 
 </body>
