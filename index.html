@@ -9,19 +9,9 @@
 body {
 margin:0;
 font-family:Arial, sans-serif;
+background: linear-gradient(120deg,#0f2027,#203a43,#2c5364);
 color:white;
 overflow:hidden;
-
-/* 🔥 BACKGROUND ANIMASI */
-background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #00c6ff);
-background-size:400% 400%;
-animation: gradientBG 10s ease infinite;
-}
-
-@keyframes gradientBG {
-0% {background-position:0% 50%;}
-50% {background-position:100% 50%;}
-100% {background-position:0% 50%;}
 }
 
 .slide {
@@ -63,15 +53,6 @@ font-size:16px;
 #next {right:20px;}
 #prev {left:20px;}
 
-#musicBtn {
-top:20px;
-right:20px;
-position:fixed;
-background:#ffcc00;
-color:black;
-font-weight:bold;
-}
-
 iframe {
 width:80%;
 height:400px;
@@ -87,13 +68,6 @@ to {opacity:1;}
 
 <body>
 
-<!-- 🎵 MUSIC -->
-<audio id="music" loop>
-<source src="Sound/music (2).mp3" type="audio/mpeg">
-</audio>
-
-<!-- 🎵 BUTTON MUSIC ON/OFF -->
-<button id="musicBtn" onclick="toggleMusic()">🔊 Music ON</button>
 
 <!-- SLIDE 1 -->
 <div class="slide active">
@@ -128,7 +102,7 @@ to {opacity:1;}
 <!-- SLIDE 5 (YouTube Video) -->
 <div class="slide">
 <h2>Video Tutorial Badminton</h2>
-<iframe src="vidio.mp3" allowfullscreen></iframe>
+<iframe src="https://youtube.com/shorts/zeDKMR2KdCQ?si=Ft0k-wqJRJTAfYNs" allowfullscreen></iframe>
 </div>
 
 <!-- SLIDE 6 -->
