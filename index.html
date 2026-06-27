@@ -6,6 +6,59 @@
 <title>Badminton Equipment Slide Show</title>
 
 <style>
+  .gallery4{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+width:90%;
+margin:auto;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:10px;
+border-radius:15px;
+text-align:center;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card p{
+margin-top:10px;
+font-size:18px;
+font-weight:bold;
+}
+  .video-links{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:25px;
+margin-top:40px;
+}
+
+.video-links a{
+text-decoration:none;
+font-size:22px;
+font-weight:bold;
+color:white;
+padding:18px 30px;
+background:#00b894;
+border-radius:12px;
+transition:.3s;
+width:70%;
+text-align:center;
+}
+
+.video-links a:hover{
+background:#0984e3;
+transform:scale(1.05);
+}
+  
 body {
 margin:0;
 font-family:Arial, sans-serif;
@@ -196,7 +249,7 @@ z-index:9999;
 <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px;">
 
   <div style="text-align:center;">
-    <img src="image/sepatu.jfiff">
+    <img src="image/sepatu.jfif">
   </div>
 
   <div style="text-align:center;">
@@ -228,23 +281,52 @@ z-index:9999;
   
 <!-- SLIDE 4 -->
 <div class="slide">
-<h2>Biografi Dan Prestasi</h2>
+<h2>Shuttlecock and Kaos Kaki Product</h2>
 
-<p>
-🏸 Kevin Sanjaya & Marcus Gideon adalah pasangan ganda putra Indonesia yang sangat sukses di dunia badminton.<br><br>
+<div class="gallery4">
 
-🔥 Mereka dikenal dengan permainan cepat, agresif, dan penuh tekanan kepada lawan.<br><br>
-
-🏆 Prestasi mereka meliputi juara All England, Asian Games, Indonesia Open, serta berbagai turnamen BWF World Tour.<br><br>
-
-🌍 Mereka pernah menduduki peringkat 1 dunia ganda putra dan dijuluki “The Minions” oleh penggemar badminton.
-</p>
+<div class="card">
+<img src="image/aero.jfif" alt="Kevin & Marcus 1">
 </div>
 
+<div class="card">
+<img src="image/frasser.jfif" alt="Kevin & Marcus 2">
+</div>
+
+<div class="card">
+<img src="image/sinar mutiara.jfif" alt="Kevin & Marcus 3">
+</div>
+
+<div class="card">
+<img src="image/ks yn.jfif" alt="Kevin & Marcus 4">
+</div>
+
+<div class="card">
+<img src="image/ks is.jfif" alt="Kevin & Marcus 4">
+</div>
+
+</div>
+</div>
+  
 <!-- SLIDE 5 -->
 <div class="slide">
-<h2>Cuplikan The Minions</h2>
-<iframe src="https://www.youtube.com/embed/zeDKMR2KdCQ"></iframe>
+<h2>Video The Minions</h2>
+
+<div class="video-links">
+
+<a href="https://www.youtube.com/watch?v=zeDKMR2KdCQ" target="_blank">
+▶ Video 1 - Highlight Kevin & Marcus
+</a>
+
+<a href="https://www.youtube.com/results?search_query=Kevin+Marcus+All+England" target="_blank">
+▶ Video 2 - All England Highlights
+</a>
+
+<a href="https://www.youtube.com/results?search_query=Kevin+Marcus+Best+Rally" target="_blank">
+▶ Video 3 - Best Rally Compilation
+</a>
+
+</div>
 </div>
 
 <!-- SLIDE 6 -->
