@@ -3,410 +3,1250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Badminton Equipment Slide Show</title>
+
+<title>Badminton Store Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
-body {
+
+*{
 margin:0;
-font-family:Arial, sans-serif;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+
+background:linear-gradient(-45deg,#07121f,#102a43,#143d59,#1f4068);
+
+background-size:400% 400%;
+
+animation:bg 15s ease infinite;
+
 color:white;
-overflow:hidden;
 
-/* BACKGROUND GRADIENT */
-background: linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1a2980);
-background-size: 400% 400%;
-animation: gradientBG 12s ease infinite;
+overflow-x:hidden;
+
 }
 
-@keyframes gradientBG {
-0% {background-position:0% 50%;}
-50% {background-position:100% 50%;}
-100% {background-position:0% 50%;}
+@keyframes bg{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
 }
 
-/* BINTANG BACKGROUND */
-.star {
+/*================ NAVBAR ================*/
+
+nav{
+
 position:fixed;
-width:3px;
-height:3px;
-background:white;
-border-radius:50%;
-animation:twinkle 2s infinite ease-in-out;
-opacity:0.7;
-z-index:0;
-}
 
-@keyframes twinkle {
-0%,100% {opacity:0.2; transform:scale(1);}
-50% {opacity:1; transform:scale(1.5);}
-}
-
-/* SLIDE */
-.slide {
-display:none;
-height:100vh;
-text-align:center;
-padding:40px;
-animation:fade 1s ease-in-out;
-position:relative;
-z-index:2;
-}
-
-.active {
-display:block;
-}
-
-/* ANIMASI SLIDE 1 */
-.slide.active h1 {
-animation: zoomIn 1.2s ease;
-}
-
-.slide.active p {
-animation: slideUp 1.5s ease;
-}
-
-@keyframes zoomIn {
-from {transform:scale(0); opacity:0;}
-to {transform:scale(1); opacity:1;}
-}
-
-@keyframes slideUp {
-from {transform:translateY(50px); opacity:0;}
-to {transform:translateY(0); opacity:1;}
-}
-
-/* GAMBAR */
-img {
-width:200px;
-height:200px;
-margin:10px;
-border-radius:15px;
-box-shadow:0 0 15px rgba(255,255,255,0.3);
-}
-
-/* BUTTON */
-button {
-position:fixed;
-bottom:20px;
-padding:10px 20px;
-border:none;
-background:#00c6ff;
-color:white;
-cursor:pointer;
-border-radius:10px;
-font-size:16px;
-z-index:3;
-}
-
-#next {right:20px;}
-#prev {left:20px;}
-
-/* =========================
-   NAVBAR
-========================= */
-.navbar{
-position:fixed;
 top:0;
+
 left:0;
+
 width:100%;
-height:70px;
+
+padding:18px 8%;
+
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
-padding:0 30px;
-background:rgba(0,0,0,0.4);
-backdrop-filter:blur(10px);
-z-index:999;
+
+backdrop-filter:blur(15px);
+
+background:rgba(255,255,255,.08);
+
+z-index:1000;
+
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+
 }
 
 .logo{
+
 font-size:28px;
-font-weight:bold;
-color:#FFD700;
-text-shadow:0 0 10px gold;
+
+font-weight:700;
+
+color:#00ffd5;
+
 }
 
-.menu{
-display:flex;
-gap:20px;
-}
+.logo span{
 
-.menu a{
-text-decoration:none;
 color:white;
-font-size:18px;
-transition:.3s;
+
 }
 
-.menu a:hover{
-color:#FFD700;
-transform:scale(1.1);
-}
+nav ul{
 
-/* =========================
-   KERANJANG
-========================= */
-
-.cart{
-position:fixed;
-top:80px;
-right:20px;
-width:70px;
-height:70px;
-background:#FFD700;
-border-radius:50%;
 display:flex;
-justify-content:center;
+
+list-style:none;
+
+gap:30px;
+
+}
+
+nav ul li a{
+
+text-decoration:none;
+
+color:white;
+
+font-weight:500;
+
+transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+color:#00ffd5;
+
+}
+
+.icon-group{
+
+display:flex;
+
 align-items:center;
-font-size:35px;
+
+gap:20px;
+
+}
+
+.icon-group i{
+
+font-size:22px;
+
 cursor:pointer;
-box-shadow:0 0 20px gold;
-animation:cartGlow 2s infinite;
-z-index:999;
+
 transition:.3s;
+
 }
 
-.cart:hover{
-transform:scale(1.15);
+.icon-group i:hover{
+
+color:#00ffd5;
+
+transform:scale(1.2);
+
 }
 
-.cart span{
+.cart-count{
+
 position:absolute;
-top:5px;
-right:5px;
+
+margin-left:-8px;
+
+margin-top:-8px;
+
 background:red;
-width:22px;
-height:22px;
+
+width:20px;
+
+height:20px;
+
 border-radius:50%;
-font-size:13px;
+
 display:flex;
+
 justify-content:center;
+
 align-items:center;
+
+font-size:12px;
+
+}
+
+/*================ HERO ================*/
+
+.hero{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+flex-direction:column;
+
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:60px;
+
+margin-bottom:20px;
+
+}
+
+.hero p{
+
+max-width:700px;
+
+line-height:30px;
+
+font-size:18px;
+
+margin-bottom:35px;
+
+}
+
+.hero button{
+
+padding:16px 45px;
+
+border:none;
+
+border-radius:50px;
+
+font-size:18px;
+
+cursor:pointer;
+
+background:#00ffd5;
+
 font-weight:bold;
-}
 
-@keyframes cartGlow{
-
-0%{box-shadow:0 0 10px gold;}
-
-50%{box-shadow:0 0 35px gold;}
-
-100%{box-shadow:0 0 10px gold;}
+transition:.4s;
 
 }
-  
-/* IFRAME */
-iframe {
-width:80%;
-height:400px;
-border-radius:15px;
+
+.hero button:hover{
+
+transform:translateY(-6px);
+
+box-shadow:0 0 25px cyan;
+
 }
 
-/* TEKS BERGERAK */
-.marquee {
-width:100%;
+/*=============== SEARCH ===============*/
+
+.search-box{
+
+display:flex;
+
+justify-content:center;
+
+padding:20px;
+
+margin-top:20px;
+
+}
+
+.search-box input{
+
+width:500px;
+
+max-width:90%;
+
+padding:15px;
+
+border-radius:30px;
+
+border:none;
+
+outline:none;
+
+font-size:17px;
+
+}
+
+/*=============== PRODUCT ===============*/
+
+.products{
+
+padding:60px 8%;
+
+}
+
+.products h2{
+
+text-align:center;
+
+font-size:45px;
+
+margin-bottom:50px;
+
+}
+
+.product-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(15px);
+
+border-radius:20px;
+
 overflow:hidden;
-white-space:nowrap;
-box-sizing:border-box;
-border-top:2px solid white;
-border-bottom:2px solid white;
-padding:10px 0;
+
+transition:.4s;
+
+box-shadow:0 0 15px rgba(0,0,0,.4);
+
 }
 
-.marquee span {
-display:inline-block;
-padding-left:100%;
-animation:marquee 10s linear infinite;
-font-size:20px;
+.card:hover{
+
+transform:translateY(-12px);
+
+}
+
+.card img{
+
+width:100%;
+
+height:240px;
+
+object-fit:cover;
+
+}
+
+.card-content{
+
+padding:20px;
+
+}
+
+.card-content h3{
+
+margin-bottom:10px;
+
+}
+
+.price{
+
+font-size:22px;
+
 font-weight:bold;
+
+color:#00ffd5;
+
+margin:10px 0;
+
 }
 
-@keyframes marquee {
-0% {transform:translateX(0);}
-100% {transform:translateX(-100%);}
+.rating{
+
+color:gold;
+
+margin-bottom:15px;
+
 }
 
-@keyframes fade {
-from {opacity:0;}
-to {opacity:1;}
+.card button{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+background:#00ffd5;
+
+font-weight:bold;
+
+transition:.3s;
+
 }
 
-/* EFEK KURSOR */
-.cursor {
-position:fixed;
-width:10px;
-height:10px;
-background:#00c6ff;
-border-radius:50%;
-pointer-events:none;
-transform:translate(-50%,-50%);
-box-shadow:0 0 15px #00c6ff;
-z-index:9999;
+.card button:hover{
+
+background:white;
+
 }
+
+/*=============== RESPONSIVE ===============*/
+
+@media(max-width:768px){
+
+nav{
+
+padding:15px;
+
+}
+
+nav ul{
+
+display:none;
+
+}
+
+.hero h1{
+
+font-size:40px;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+}
+
+}
+
 </style>
+
 </head>
 
 <body>
-<!-- NAVBAR -->
 
-<div class="navbar">
+<!-- ================= NAVBAR ================= -->
 
-<div class="logo">🏸 Badminton Store</div>
+<nav>
 
-<div class="menu">
+<div class="logo">
 
-<a href="#" onclick="showSlide(0)">Home</a>
-
-<a href="#" onclick="showSlide(1)">Equipment</a>
-
-<a href="#" onclick="showSlide(2)">Gallery</a>
-
-<a href="#" onclick="showSlide(3)">Biography</a>
-
-<a href="#" onclick="showSlide(4)">Video</a>
-
-<a href="#" onclick="showSlide(5)">Thanks</a>
+🏸 Badminton<span>Store</span>
 
 </div>
 
-</div>
+<ul>
 
-<!-- KERANJANG -->
+<li><a href="#">Home</a></li>
 
-<div class="cart">
+<li><a href="#produk">Produk</a></li>
 
-🛒
+<li><a href="#">Tentang</a></li>
 
-<span>4</span>
+<li><a href="#">Kontak</a></li>
 
-</div>
-  
-<!-- KURSOR -->
-<div class="cursor" id="cursor"></div>
+</ul>
 
-<!-- SLIDE 1 -->
-<div class="slide active">
-<h1>🏸 Badminton Equipment</h1>
-<p>Welcome to the outfit badminton</p>
-</div>
+<div class="icon-group">
 
-<!-- SLIDE 2 -->
-<div class="slide">
-<h2>Badminton Equipment</h2>
+<i class="fas fa-search"></i>
 
-<div style="display:inline-block;text-align:center;">
-<img src="image/sepatu.jfif"><p>Sepatu</p>
-</div>
+<div style="position:relative">
 
-<div style="display:inline-block;text-align:center;">
-<img src="image/seragam.jfif"><p>Seragam</p>
-</div>
+<i class="fas fa-shopping-cart" id="cartBtn"></i>
 
-<div style="display:inline-block;text-align:center;">
-<img src="image/u 4.jpeg"><p>Shuttlecock</p>
-</div>
-
-<div style="display:inline-block;text-align:center;">
-<img src="image/u 5.jpeg"><p>Raket</p>
-</div>
+<div class="cart-count" id="cartCount">0</div>
 
 </div>
 
-<!-- SLIDE 3 -->
-<div class="slide">
-<h2>Moment Kevin Sanjaya Dan Marcus Gideon</h2>
+<i class="fas fa-moon" id="darkMode"></i>
 
-<div style="display:flex; justify-content:center; flex-wrap:wrap; gap:20px;">
+</div>
 
-  <div style="text-align:center;">
-    <img src="image/u 1.jfif">
-    <p>Apresiasi</p>
-  </div>
+</nav>
 
-  <div style="text-align:center;">
-    <img src="image/u 2.jfif">
-    <p>Selebrasi</p>
-  </div>
+<!-- ================= HERO ================= -->
 
-  <div style="text-align:center;">
-    <img src="image/u 3.jfif">
-    <p>Smash Marcus Gideon</p>
-  </div>
+<section class="hero">
 
-  </div>
-</div> 
-  
-<!-- SLIDE 4 -->
-<div class="slide">
-<h2>Biografi Dan Prestasi</h2>
+<h1>Badminton Store Premium</h1>
 
 <p>
-🏸 Kevin Sanjaya & Marcus Gideon adalah pasangan ganda putra Indonesia yang sangat sukses di dunia badminton.<br><br>
 
-🔥 Mereka dikenal dengan permainan cepat, agresif, dan penuh tekanan kepada lawan.<br><br>
+Temukan perlengkapan badminton berkualitas tinggi mulai dari raket,
+sepatu, shuttlecock, grip, tas, jersey, hingga aksesoris lainnya
+dengan harga terbaik.
 
-🏆 Prestasi mereka meliputi juara All England, Asian Games, Indonesia Open, serta berbagai turnamen BWF World Tour.<br><br>
-
-🌍 Mereka pernah menduduki peringkat 1 dunia ganda putra dan dijuluki “The Minions” oleh penggemar badminton.
 </p>
+
+<button onclick="document.getElementById('produk').scrollIntoView()">
+
+Belanja Sekarang
+
+</button>
+
+</section>
+
+<!-- ================= SEARCH ================= -->
+
+<div class="search-box">
+
+<input type="text"
+
+id="search"
+
+placeholder="Cari Produk...">
+
 </div>
 
-<!-- SLIDE 5 -->
-<div class="slide">
-<h2>Cuplikan The Minions</h2>
-<iframe src="https://www.youtube.com/embed/zeDKMR2KdCQ"></iframe>
+<!-- ================= PRODUK ================= -->
+
+<section class="products" id="produk">
+
+<h2>Produk Terlaris</h2>
+
+<div class="product-grid">
+
+<!-- Produk 1 -->
+
+<div class="card">
+
+<img src="image/raket.jpg">
+
+<div class="card-content">
+
+<h3>Yonex Astrox 100ZZ</h3>
+
+<div class="rating">
+
+★★★★★
+
 </div>
 
-<!-- SLIDE 6 -->
-<div class="slide">
-<h1>Terima Kasih</h1>
-<div class="marquee">
-<span>🏸 THANK YOU FOR WATCHING • KEEP SMASHING • BADMINTON FOREVER 🏸</span>
-</div>
+<div class="price">
+
+Rp3.250.000
+
 </div>
 
-<!-- BUTTON -->
-<button id="prev" onclick="changeSlide(-1)">Prev</button>
-<button id="next" onclick="changeSlide(1)">Next</button>
+<button class="addCart"
 
+data-name="Yonex Astrox 100ZZ"
+
+data-price="3250000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 3 -->
+<div class="card">
+
+<img src="image/shuttlecock.jpg">
+
+<div class="card-content">
+
+<h3>Yonex Aerosensa 50</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp650.000</div>
+
+<button class="addCart"
+data-name="Yonex Aerosensa 50"
+data-price="650000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 4 -->
+
+<div class="card">
+
+<img src="image/tas.jpg">
+
+<div class="card-content">
+
+<h3>Tas Yonex Pro Tournament</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp850.000</div>
+
+<button class="addCart"
+data-name="Tas Yonex Pro Tournament"
+data-price="850000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 5 -->
+
+<div class="card">
+
+<img src="image/grip.jpg">
+
+<div class="card-content">
+
+<h3>Yonex Super Grap</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp35.000</div>
+
+<button class="addCart"
+data-name="Yonex Super Grap"
+data-price="35000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 6 -->
+
+<div class="card">
+
+<img src="image/jersey.jpg">
+
+<div class="card-content">
+
+<h3>Jersey Badminton Victor</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp275.000</div>
+
+<button class="addCart"
+data-name="Jersey Victor"
+data-price="275000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 7 -->
+
+<div class="card">
+
+<img src="image/senar.jpg">
+
+<div class="card-content">
+
+<h3>Yonex BG65</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp140.000</div>
+
+<button class="addCart"
+data-name="Yonex BG65"
+data-price="140000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+<!-- Produk 8 -->
+
+<div class="card">
+
+<img src="image/wristband.jpg">
+
+<div class="card-content">
+
+<h3>Yonex Wristband</h3>
+
+<div class="rating">★★★★★</div>
+
+<div class="price">Rp75.000</div>
+
+<button class="addCart"
+data-name="Yonex Wristband"
+data-price="75000">
+
+Tambah ke Keranjang
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ===================== KERANJANG ===================== -->
+
+<div id="cartPanel">
+
+<div class="cart-header">
+
+<h2>
+
+🛒 Keranjang Belanja
+
+</h2>
+
+<button id="closeCart">
+
+✖
+
+</button>
+
+</div>
+
+<div id="cartItems">
+
+<p>
+
+Keranjang masih kosong
+
+</p>
+
+</div>
+
+<div class="cart-footer">
+
+<h3>
+
+Total :
+
+<span id="totalPrice">
+
+Rp0
+
+</span>
+
+</h3>
+
+<button id="checkoutBtn">
+
+Checkout
+
+</button>
+
+</div>
+
+</div>
+
+<style>
+
+#cartPanel{
+
+position:fixed;
+
+right:-420px;
+
+top:0;
+
+width:400px;
+
+height:100%;
+
+background:white;
+
+color:#333;
+
+z-index:9999;
+
+transition:.4s;
+
+box-shadow:-8px 0 20px rgba(0,0,0,.3);
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+#cartPanel.active{
+
+right:0;
+
+}
+
+.cart-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:20px;
+
+background:#00c896;
+
+color:white;
+
+}
+
+.cart-header button{
+
+background:none;
+
+border:none;
+
+font-size:24px;
+
+cursor:pointer;
+
+color:white;
+
+}
+
+#cartItems{
+
+flex:1;
+
+overflow:auto;
+
+padding:20px;
+
+}
+
+.cart-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:20px;
+
+border-bottom:1px solid #ddd;
+
+padding-bottom:10px;
+
+}
+
+.cart-item button{
+
+padding:5px 10px;
+
+margin-left:5px;
+
+border:none;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+.cart-footer{
+
+padding:20px;
+
+border-top:1px solid #ddd;
+
+}
+
+#checkoutBtn{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+background:#00c896;
+
+color:white;
+
+font-size:18px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#checkoutBtn:hover{
+
+background:#009d75;
+
+transform:scale(1.03);
+
+}
+
+@media(max-width:768px){
+
+#cartPanel{
+
+width:100%;
+
+}
+
+}
+
+</style>
 <script>
-let index = 0;
-const slides = document.querySelectorAll(".slide");
 
-function showSlide(i){
+let cart=[];
 
-index = i;
+const cartBtn=document.getElementById("cartBtn");
+const closeCart=document.getElementById("closeCart");
+const cartPanel=document.getElementById("cartPanel");
+const cartItems=document.getElementById("cartItems");
+const totalPrice=document.getElementById("totalPrice");
+const cartCount=document.getElementById("cartCount");
 
-slides.forEach(s=>s.classList.remove("active"));
-
-slides[index].classList.add("active");
-
+cartBtn.onclick=()=>{
+cartPanel.classList.add("active");
 }
 
-function changeSlide(step){
-index += step;
-if(index < 0) index = slides.length - 1;
-if(index >= slides.length) index = 0;
-showSlide(index);
+closeCart.onclick=()=>{
+cartPanel.classList.remove("active");
 }
 
-/* KURSOR FOLLOW */
-const cursor = document.getElementById("cursor");
-document.addEventListener("mousemove",(e)=>{
-cursor.style.left = e.clientX + "px";
-cursor.style.top = e.clientY + "px";
+document.querySelectorAll(".addCart").forEach(btn=>{
+
+btn.onclick=()=>{
+
+const name=btn.dataset.name;
+const price=parseInt(btn.dataset.price);
+
+const item=cart.find(i=>i.name===name);
+
+if(item){
+
+item.qty++;
+
+}else{
+
+cart.push({
+name,
+price,
+qty:1
 });
 
-/* BINTANG OTOMATIS */
-for(let i=0;i<40;i++){
-let star = document.createElement("div");
-star.classList.add("star");
-star.style.top = Math.random()*100 + "vh";
-star.style.left = Math.random()*100 + "vw";
-star.style.animationDuration = (1+Math.random()*3) + "s";
-document.body.appendChild(star);
 }
+
+renderCart();
+
+}
+
+});
+
+function renderCart(){
+
+cartItems.innerHTML="";
+
+let total=0;
+let jumlah=0;
+
+cart.forEach((item,index)=>{
+
+total+=item.price*item.qty;
+jumlah+=item.qty;
+
+cartItems.innerHTML+=`
+
+<div class="cart-item">
+
+<div>
+
+<b>${item.name}</b>
+
+<br>
+
+Rp ${item.price.toLocaleString()}
+
+<br>
+
+Jumlah : ${item.qty}
+
+</div>
+
+<div>
+
+<button onclick="minusItem(${index})">-</button>
+
+<button onclick="plusItem(${index})">+</button>
+
+<button onclick="hapusItem(${index})">🗑</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+if(cart.length==0){
+
+cartItems.innerHTML="<p>Keranjang masih kosong</p>";
+
+}
+
+totalPrice.innerHTML="Rp "+total.toLocaleString();
+
+cartCount.innerHTML=jumlah;
+
+}
+
+function plusItem(i){
+
+cart[i].qty++;
+
+renderCart();
+
+}
+
+function minusItem(i){
+
+cart[i].qty--;
+
+if(cart[i].qty<=0){
+
+cart.splice(i,1);
+
+}
+
+renderCart();
+
+}
+
+function hapusItem(i){
+
+cart.splice(i,1);
+
+renderCart();
+
+}
+
+document.getElementById("checkoutBtn").onclick=()=>{
+
+if(cart.length==0){
+
+alert("Keranjang masih kosong!");
+
+return;
+
+}
+
+document.getElementById("paymentPopup").style.display="flex";
+
+}
+
+document.getElementById("payNow").onclick=()=>{
+
+const metode=document.getElementById("paymentMethod").value;
+
+alert(
+
+"Terima kasih telah berbelanja.\n\n"+
+
+"Metode Pembayaran : "+metode+
+
+"\n\nPesanan Anda sedang diproses."
+
+);
+
+cart=[];
+
+renderCart();
+
+document.getElementById("paymentPopup").style.display="none";
+
+cartPanel.classList.remove("active");
+
+}
+
+document.getElementById("search").addEventListener("keyup",function(){
+
+let keyword=this.value.toLowerCase();
+
+document.querySelectorAll(".card").forEach(card=>{
+
+let nama=card.querySelector("h3").innerText.toLowerCase();
+
+card.style.display=nama.includes(keyword)?"block":"none";
+
+});
+
+});
+
 </script>
 
 </body>
+
 </html>
+<!-- ===================== POPUP PEMBAYARAN ===================== -->
+
+<div id="paymentPopup">
+
+<div class="paymentBox">
+
+<h2>
+
+Pilih Metode Pembayaran
+
+</h2>
+
+<select id="paymentMethod">
+
+<option>QRIS</option>
+
+<option>DANA</option>
+
+<option>OVO</option>
+
+<option>GoPay</option>
+
+<option>Transfer Bank</option>
+
+<option>COD</option>
+
+</select>
+
+<button id="payNow">
+
+Bayar Sekarang
+
+</button>
+
+</div>
+
+</div>
+
+<style>
+
+#paymentPopup{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.6);
+
+display:none;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:10000;
+
+}
+
+.paymentBox{
+
+background:white;
+
+color:#333;
+
+padding:35px;
+
+border-radius:20px;
+
+width:350px;
+
+text-align:center;
+
+animation:zoom .4s;
+
+}
+
+.paymentBox h2{
+
+margin-bottom:20px;
+
+}
+
+.paymentBox select{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:20px;
+
+font-size:16px;
+
+}
+
+.paymentBox button{
+
+width:100%;
+
+padding:15px;
+
+background:#00c896;
+
+border:none;
+
+color:white;
+
+font-size:18px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+@keyframes zoom{
+
+from{
+
+transform:scale(.6);
+
+opacity:0;
+
+}
+
+to{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+</style>
