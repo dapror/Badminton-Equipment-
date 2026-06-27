@@ -1,2 +1,0 @@
-# Badminton-Equipment-
-Ambisi segalanya 
