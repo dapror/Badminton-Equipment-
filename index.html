@@ -202,10 +202,322 @@ transform:translate(-50%,-50%);
 box-shadow:0 0 15px #00c6ff;
 z-index:9999;
 }
+
+/* ====================================================== */
+/* TAMBAHAN: HARGA, MENU, KERANJANG, PEMBAYARAN, MUSIK     */
+/* ====================================================== */
+
+.slide{
+padding-top:90px;
+}
+
+.price{
+margin-top:8px;
+font-size:16px;
+color:#ffeaa7;
+font-weight:bold;
+}
+
+.add-cart-btn{
+position:static;
+margin-top:6px;
+display:inline-block;
+padding:6px 14px;
+border:none;
+border-radius:8px;
+background:#00b894;
+color:white;
+font-weight:bold;
+cursor:pointer;
+font-size:14px;
+transition:.3s;
+}
+
+.add-cart-btn:hover{
+background:#0984e3;
+transform:scale(1.05);
+}
+
+.menu-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(6px);
+display:flex;
+justify-content:center;
+gap:10px;
+padding:12px 0;
+z-index:50;
+flex-wrap:wrap;
+}
+
+.menu-bar button{
+position:static;
+background:transparent;
+border:1px solid rgba(255,255,255,0.4);
+color:white;
+padding:6px 14px;
+border-radius:20px;
+font-size:14px;
+cursor:pointer;
+transition:.3s;
+}
+
+.menu-bar button:hover{
+background:#00c6ff;
+border-color:#00c6ff;
+}
+
+.top-right-controls{
+position:fixed;
+top:14px;
+right:16px;
+display:flex;
+gap:10px;
+z-index:60;
+}
+
+.icon-btn{
+position:static;
+background:#1a2980;
+border:2px solid white;
+color:white;
+width:46px;
+height:46px;
+border-radius:50%;
+font-size:20px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:.3s;
+position:relative;
+}
+
+.icon-btn:hover{
+background:#00c6ff;
+}
+
+.cart-count{
+position:absolute;
+top:-6px;
+right:-6px;
+background:#e74c3c;
+color:white;
+font-size:12px;
+border-radius:50%;
+width:20px;
+height:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.cart-panel{
+position:fixed;
+top:0;
+right:-380px;
+width:340px;
+height:100%;
+background:#16213e;
+box-shadow:-5px 0 20px rgba(0,0,0,0.5);
+z-index:100;
+transition:right .4s ease;
+padding:80px 20px 20px;
+overflow-y:auto;
+text-align:left;
+}
+
+.cart-panel.open{
+right:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(255,255,255,0.2);
+padding:10px 0;
+font-size:14px;
+}
+
+.cart-item button{
+position:static;
+background:#e74c3c;
+border:none;
+color:white;
+border-radius:6px;
+padding:4px 8px;
+cursor:pointer;
+font-size:13px;
+}
+
+.cart-total{
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+text-align:right;
+}
+
+.checkout-btn{
+position:static;
+margin-top:15px;
+width:100%;
+padding:12px;
+background:#00b894;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+}
+
+.checkout-btn:hover{
+background:#0984e3;
+}
+
+.close-panel{
+position:absolute;
+top:20px;
+right:20px;
+background:none;
+border:none;
+color:white;
+font-size:24px;
+cursor:pointer;
+}
+
+.modal-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:200;
+}
+
+.modal-overlay.show{
+display:flex;
+}
+
+.modal-box{
+background:#16213e;
+padding:30px;
+border-radius:15px;
+width:90%;
+max-width:400px;
+text-align:left;
+box-shadow:0 0 30px rgba(0,0,0,0.6);
+}
+
+.modal-box h2{
+text-align:center;
+margin-top:0;
+}
+
+.modal-box label{
+display:block;
+margin:12px 0 6px;
+font-size:14px;
+}
+
+.modal-box input,.modal-box select{
+width:100%;
+padding:8px;
+border-radius:6px;
+border:none;
+font-size:14px;
+box-sizing:border-box;
+}
+
+.confirm-pay-btn{
+position:static;
+margin-top:20px;
+width:100%;
+padding:12px;
+background:#00c6ff;
+border:none;
+border-radius:10px;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
+
+.confirm-pay-btn:hover{
+background:#0984e3;
+}
+
+.close-modal{
+position:absolute;
+top:15px;
+right:25px;
+background:none;
+border:none;
+color:white;
+font-size:22px;
+cursor:pointer;
+}
 </style>
 </head>
 
 <body>
+
+<!-- ====================================================== -->
+<!-- TAMBAHAN: MENU NAVIGASI -->
+<!-- ====================================================== -->
+<div class="menu-bar">
+  <button onclick="goToSlide(0)">🏠 Beranda</button>
+  <button onclick="goToSlide(1)">🏸 Raket</button>
+  <button onclick="goToSlide(2)">👟 Sepatu</button>
+  <button onclick="goToSlide(3)">🧦 Shuttlecock</button>
+  <button onclick="goToSlide(4)">🎬 Video</button>
+  <button onclick="goToSlide(5)">🙏 Terima Kasih</button>
+</div>
+
+<!-- TOMBOL MUSIK & KERANJANG -->
+<div class="top-right-controls">
+  <button class="icon-btn" id="musicBtn" onclick="toggleMusic()" title="Musik On/Off">🔇</button>
+  <button class="icon-btn" onclick="toggleCart()" title="Keranjang">
+    🛒
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+</div>
+
+<!-- PANEL KERANJANG -->
+<div class="cart-panel" id="cartPanel">
+  <button class="close-panel" onclick="toggleCart()">✕</button>
+  <h2>🛒 Keranjang Belanja</h2>
+  <div id="cartItemsContainer"><p style="opacity:.6;">Keranjang masih kosong</p></div>
+  <div class="cart-total">Total: Rp <span id="cartTotal">0</span></div>
+  <button class="checkout-btn" onclick="openPayment()">Checkout / Bayar</button>
+</div>
+
+<!-- MODAL PEMBAYARAN -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal-box" style="position:relative;">
+    <button class="close-modal" onclick="closePayment()">✕</button>
+    <h2>💳 Pembayaran</h2>
+    <label>Nama Pembeli</label>
+    <input type="text" id="buyerName" placeholder="Masukkan nama anda">
+    <label>Alamat Pengiriman</label>
+    <input type="text" id="buyerAddress" placeholder="Masukkan alamat anda">
+    <label>Metode Pembayaran</label>
+    <select id="payMethod">
+      <option value="Transfer Bank">Transfer Bank</option>
+      <option value="E-Wallet (OVO/Gopay/Dana)">E-Wallet (OVO/Gopay/Dana)</option>
+      <option value="COD">COD (Bayar di Tempat)</option>
+    </select>
+    <p style="margin-top:15px;font-weight:bold;">Total Bayar: Rp <span id="payTotal">0</span></p>
+    <button class="confirm-pay-btn" onclick="confirmPayment()">Konfirmasi Pembayaran</button>
+  </div>
+</div>
 
 <!-- KURSOR -->
 <div class="cursor" id="cursor"></div>
@@ -222,22 +534,32 @@ z-index:9999;
 
 <div style="display:inline-block;text-align:center;">
 <img src="image/Astrox 99.jfif">
+<p class="price">Rp 2.850.000</p>
+<button class="add-cart-btn" data-name="Raket Astrox 99" data-price="2850000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div style="display:inline-block;text-align:center;">
 <img src="image/carbonex 20.jfif">
+<p class="price">Rp 1.450.000</p>
+<button class="add-cart-btn" data-name="Raket Carbonex 20" data-price="1450000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div style="display:inline-block;text-align:center;">
 <img src="image/carlton.jfif">
+<p class="price">Rp 950.000</p>
+<button class="add-cart-btn" data-name="Raket Carlton" data-price="950000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div style="display:inline-block;text-align:center;">
 <img src="image/li ning.jfif">
+<p class="price">Rp 1.750.000</p>
+<button class="add-cart-btn" data-name="Raket Li-Ning" data-price="1750000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div style="display:inline-block;text-align:center;">
 <img src="image/victot.jfif">
+<p class="price">Rp 1.600.000</p>
+<button class="add-cart-btn" data-name="Raket Victor" data-price="1600000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 </div>
@@ -250,30 +572,44 @@ z-index:9999;
 
   <div style="text-align:center;">
     <img src="image/sepatu.jfif">
+    <p class="price">Rp 850.000</p>
+    <button class="add-cart-btn" data-name="Sepatu Badminton" data-price="850000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
   <div style="text-align:center;">
     <img src="image/asics 1.jfif">
+    <p class="price">Rp 1.200.000</p>
+    <button class="add-cart-btn" data-name="Sepatu Asics 1" data-price="1200000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
   <div style="text-align:center;">
     <img src="image/asics 2.jfif">
+    <p class="price">Rp 1.350.000</p>
+    <button class="add-cart-btn" data-name="Sepatu Asics 2" data-price="1350000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
   <div style="text-align:center;">
     <img src="image/rs 1.jfif">
+    <p class="price">Rp 650.000</p>
+    <button class="add-cart-btn" data-name="Sepatu RS 1" data-price="650000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
     <div style="text-align:center;">
     <img src="image/rs 2.jfif">
+    <p class="price">Rp 700.000</p>
+    <button class="add-cart-btn" data-name="Sepatu RS 2" data-price="700000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
     <div style="text-align:center;">
     <img src="image/rs 3.jfif">
+    <p class="price">Rp 720.000</p>
+    <button class="add-cart-btn" data-name="Sepatu RS 3" data-price="720000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
 
     <div style="text-align:center;">
     <img src="image/rs 4.jfif">
+    <p class="price">Rp 680.000</p>
+    <button class="add-cart-btn" data-name="Sepatu RS 4" data-price="680000" onclick="addToCart(this)">+ Keranjang</button>
   </div>
   
 </div>
@@ -287,22 +623,32 @@ z-index:9999;
 
 <div class="card">
 <img src="image/aero.jfif" alt="Kevin & Marcus 1">
+<p class="price">Rp 185.000</p>
+<button class="add-cart-btn" data-name="Shuttlecock Aero" data-price="185000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div class="card">
 <img src="image/frasser.jfif" alt="Kevin & Marcus 2">
+<p class="price">Rp 165.000</p>
+<button class="add-cart-btn" data-name="Shuttlecock Frasser" data-price="165000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div class="card">
 <img src="image/sinar mutiara.jfif" alt="Kevin & Marcus 3">
+<p class="price">Rp 150.000</p>
+<button class="add-cart-btn" data-name="Shuttlecock Sinar Mutiara" data-price="150000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div class="card">
 <img src="image/ks yn.jfif" alt="Kevin & Marcus 4">
+<p class="price">Rp 45.000</p>
+<button class="add-cart-btn" data-name="Kaos Kaki KS YN" data-price="45000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 <div class="card">
 <img src="image/ks is.jfif" alt="Kevin & Marcus 4">
+<p class="price">Rp 40.000</p>
+<button class="add-cart-btn" data-name="Kaos Kaki KS IS" data-price="40000" onclick="addToCart(this)">+ Keranjang</button>
 </div>
 
 </div>
@@ -372,6 +718,143 @@ star.style.top = Math.random()*100 + "vh";
 star.style.left = Math.random()*100 + "vw";
 star.style.animationDuration = (1+Math.random()*3) + "s";
 document.body.appendChild(star);
+}
+
+/* ====================================================== */
+/* TAMBAHAN: MENU, KERANJANG, PEMBAYARAN, MUSIK            */
+/* ====================================================== */
+
+/* ---- MENU NAVIGASI KE SLIDE ---- */
+function goToSlide(i){
+index = i;
+showSlide(index);
+}
+
+/* ---- DATA & FUNGSI KERANJANG ---- */
+let cart = [];
+
+function formatRupiah(num){
+return num.toLocaleString("id-ID");
+}
+
+function addToCart(btn){
+const name = btn.getAttribute("data-name");
+const price = parseInt(btn.getAttribute("data-price"));
+const existing = cart.find(item => item.name === name);
+if(existing){
+existing.qty += 1;
+} else {
+cart.push({name:name, price:price, qty:1});
+}
+renderCart();
+}
+
+function removeFromCart(name){
+cart = cart.filter(item => item.name !== name);
+renderCart();
+}
+
+function renderCart(){
+const container = document.getElementById("cartItemsContainer");
+const countEl = document.getElementById("cartCount");
+const totalEl = document.getElementById("cartTotal");
+let total = 0;
+let totalQty = 0;
+
+if(cart.length === 0){
+container.innerHTML = '<p style="opacity:.6;">Keranjang masih kosong</p>';
+} else {
+container.innerHTML = "";
+cart.forEach(function(item){
+total += item.price * item.qty;
+totalQty += item.qty;
+const div = document.createElement("div");
+div.classList.add("cart-item");
+div.innerHTML = "<span>"+item.name+" x"+item.qty+"<br>Rp "+formatRupiah(item.price*item.qty)+"</span><button onclick=\"removeFromCart('"+item.name+"')\">Hapus</button>";
+container.appendChild(div);
+});
+}
+
+countEl.textContent = totalQty;
+totalEl.textContent = formatRupiah(total);
+}
+
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("open");
+}
+
+/* ---- FUNGSI PEMBAYARAN ---- */
+function openPayment(){
+if(cart.length === 0){
+alert("Keranjang masih kosong, silakan pilih produk terlebih dahulu.");
+return;
+}
+const total = cart.reduce(function(sum,item){ return sum + item.price*item.qty; }, 0);
+document.getElementById("payTotal").textContent = formatRupiah(total);
+document.getElementById("paymentModal").classList.add("show");
+}
+
+function closePayment(){
+document.getElementById("paymentModal").classList.remove("show");
+}
+
+function confirmPayment(){
+const name = document.getElementById("buyerName").value.trim();
+const address = document.getElementById("buyerAddress").value.trim();
+const method = document.getElementById("payMethod").value;
+
+if(name === "" || address === ""){
+alert("Mohon isi nama dan alamat terlebih dahulu.");
+return;
+}
+
+const total = cart.reduce(function(sum,item){ return sum + item.price*item.qty; }, 0);
+alert("Terima kasih "+name+"! 🏸\nPesanan anda sebesar Rp "+formatRupiah(total)+" telah dikonfirmasi.\nMetode bayar: "+method+"\nPesanan akan dikirim ke: "+address);
+
+cart = [];
+renderCart();
+closePayment();
+toggleCart();
+}
+
+/* ---- MUSIK BACKGROUND (Web Audio, tanpa file eksternal) ---- */
+let audioCtx = null;
+let musicOn = false;
+let musicLoopId = null;
+let noteIndex = 0;
+const melodyNotes = [261.63,329.63,392.00,329.63,261.63,392.00,440.00,392.00];
+
+function playNote(freq){
+if(!audioCtx) return;
+const osc = audioCtx.createOscillator();
+const gain = audioCtx.createGain();
+osc.type = "sine";
+osc.frequency.value = freq;
+gain.gain.value = 0.07;
+osc.connect(gain);
+gain.connect(audioCtx.destination);
+osc.start();
+gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+osc.stop(audioCtx.currentTime + 0.5);
+}
+
+function toggleMusic(){
+const btn = document.getElementById("musicBtn");
+if(!musicOn){
+if(!audioCtx){
+audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+musicOn = true;
+btn.textContent = "🔊";
+musicLoopId = setInterval(function(){
+playNote(melodyNotes[noteIndex % melodyNotes.length]);
+noteIndex++;
+}, 500);
+} else {
+musicOn = false;
+btn.textContent = "🔇";
+clearInterval(musicLoopId);
+}
 }
 </script>
 
